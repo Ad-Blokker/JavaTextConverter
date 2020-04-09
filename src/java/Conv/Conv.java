@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/Conv"})
 public class Conv extends HttpServlet {
-
-    private string CheckAltInval(String input) {
+	
+    private String CheckAltInval(String input) {
         
         String output = "";
         
@@ -25,7 +25,7 @@ public class Conv extends HttpServlet {
                     if (i + 1 < input.length()) i++;              
             }
             
-            output += convtype.equals("invaltcase") : input.charAt(i) ? input.toUpperCase().charAt(i);
+            output += convtype.equals("invaltcase") ? input.charAt(i) : input.toUpperCase().charAt(i);
             
             if (i + 1 < input.length()) {
                 i++;
@@ -46,7 +46,8 @@ public class Conv extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        
+		response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Content-Type", "text/plain; charset=utf-8");
         request.setCharacterEncoding("UTF-8");
         
