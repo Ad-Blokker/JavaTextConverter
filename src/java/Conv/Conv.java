@@ -12,37 +12,42 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/Conv"})
 public class Conv extends HttpServlet {
 	
-    private String CheckAltInval(String input) {
-        
-        String output = "";
-        
-        for (int i = 0; i < input.length(); i++) {
+	private String CheckAltInval(String input, String convtype) {
 
-            char text = input.charAt(i);
-            
-            if (Character.isWhitespace(text)) {
-                output += input.charAt(i);
-                    if (i + 1 < input.length()) i++;              
-            }
-            
-            output += convtype.equals("invaltcase") ? input.charAt(i) : input.toUpperCase().charAt(i);
-            
-            if (i + 1 < input.length()) {
-                i++;
-                text = input.charAt(i);
-                
-                
-                if (Character.isWhitespace(text))
-                    output += input.charAt(i);
-                    if (i + 1 < input.length()) i++;
-                }
-                
-                output += convtype.equals("invaltcase") : input.toUpperCase().charAt(i) ? input.charAt(i);
-            }
-        }
+		String output = "";
+
+		for (int i = 0; i < input.length(); i++) {
+
+			char text = input.charAt(i);
+
+			if (Character.isWhitespace(text)) {
+				output += input.charAt(i);
+				if (i + 1 < input.length()) {
+					i++;
+				}
+			}
+
+			output += convtype.equals("invaltcase") ? input.charAt(i) : input.toUpperCase().charAt(i);
+
+			if (i + 1 < input.length()) {
+				i++;
+				text = input.charAt(i);
+
+				if (Character.isWhitespace(text)) {
+					output += input.charAt(i);
+				}
+				if (i + 1 < input.length()) {
+					i++;
+				}
+			}
+
+			output += convtype.equals("invaltcase") ? input.toUpperCase().charAt(i) : input.charAt(i);
+		}
+		return output;
+
+	}
         
-        return output;
-    }
+        
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -65,17 +70,17 @@ public class Conv extends HttpServlet {
             break;
                 
             case "altcase":
-                output = CheckAltInval(input);
+                output = CheckAltInval(input, convtype);
             break;
                 
             case "invaltcase":
-                output = CheckAltInval(input);
+                output = CheckAltInval(input, convtype);
             break;
                 
             case "randomcase":
                 Random coin = new Random();  
                 for (int i = 0; i < input.length(); i++) {
-                    output += (coin.nextInt(2) == 0) : input.toUpperCase().charAt(i) ? input.charAt(i);
+                    output += (coin.nextInt(2) == 0) ? input.toUpperCase().charAt(i) : input.charAt(i);
                 }
             break;
                 
@@ -104,7 +109,7 @@ public class Conv extends HttpServlet {
                     }
                     
                     text = input.charAt(i);
-                    lastCharDot = text == '.' || test == '!' || test == '?';
+                    lastCharDot = text == '.' || text == '!' || text == '?';
                    
                 }
                 if (!lastCharDot) output += ".";
@@ -123,10 +128,14 @@ public class Conv extends HttpServlet {
                 writer.print("You dum-dum, conversion type no exist. :(");
             }
         }
-    }
+
+}
+
 
     @Override
-    public String getServletInfo() => return "CaseConverter";
+    public String getServletInfo() {
+		return "CaseConverter";
+	}
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
