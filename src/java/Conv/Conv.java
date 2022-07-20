@@ -1,5 +1,10 @@
 package Conv;
 
+=======
+/*
+ * Copyright (C) 2022 Mark Blokker ~ Ad-Blokker
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
@@ -9,6 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * @author Mark Blokker ~ Ad-Blokker
+ */
+ 
 @WebServlet(urlPatterns = {"/Conv"})
 public class Conv extends HttpServlet {
 
@@ -22,7 +32,7 @@ public class Conv extends HttpServlet {
 
 			if (Character.isWhitespace(text)) {
 				output += input.charAt(i);
-				if (i + 1 < input.length()) {
+        if (i + 1 < input.length()) {
 					i++;
 				}
 			}
