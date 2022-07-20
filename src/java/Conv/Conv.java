@@ -66,6 +66,10 @@ public class Conv extends HttpServlet {
 			case "caps":
 				output = input.toUpperCase();
 				break;
+				
+			case "lowcase":
+				output = input.toLowerCase();
+				break;
 
 			case "altcase":
 				output = CheckAltInval(input, convtype);

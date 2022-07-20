@@ -14,6 +14,7 @@
 			<textarea rows="10" cols="50" maxlength="500" name="input" required=""><% String input = (String)request.getAttribute("input"); out.print(input);%></textarea><br>
 			<% String convtype = (String)request.getAttribute("convtype");%>
                         <label><input type="radio" name="format" value="caps" <% if (convtype.equals("caps")) { out.print("checked"); } %> > ALL CAPS</label><br>
+						<label><input type="radio" name="format" value="lower case" <% if (convtype.equals("lowcase")) { out.print("checked"); } %> > lower case</label><br>
 			<label><input type="radio" name="format" value="altcase" <% if (convtype.equals("altcase")) { out.print("checked"); } %>> Alternating Case</label><br>
 			<label><input type="radio" name="format" value="invaltcase" <% if (convtype.equals("invaltcase")) { out.print("checked"); } %>> Inverted Alternating Case</label><br>
 			<label><input type="radio" name="format" value="randomcase" <% if (convtype.equals("randomcase")) { out.print("checked"); } %>> Random Case</label><br>
