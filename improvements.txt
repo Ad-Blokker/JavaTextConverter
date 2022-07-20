@@ -1,4 +1,0 @@
-
-De 2 delen van alt en invcase in methods doen en dan de methods andersom aanroepen
-
-printer in aparte method met value meegeven
