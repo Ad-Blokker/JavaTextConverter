@@ -1,6 +1,5 @@
 package Conv;
 
-=======
 /*
  * Copyright (C) 2022 Mark Blokker ~ Ad-Blokker
  */
@@ -32,7 +31,7 @@ public class Conv extends HttpServlet {
 
 			if (Character.isWhitespace(text)) {
 				output += input.charAt(i);
-        if (i + 1 < input.length()) {
+				if (i + 1 < input.length()) {
 					i++;
 				}
 			}
