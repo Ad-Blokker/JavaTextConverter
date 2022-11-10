@@ -21,39 +21,32 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/Conv"})
 public class Conv extends HttpServlet {
 
-	private String CheckAltInval(String input, String convtype) {
+	private static String alternatingCase(String input) {
+		return alternatingCase(input, true);
+	}
 
-		String output = "";
+	private static String alternatingCase(String input, boolean uppercase) {
+		// store result in builder
+		StringBuilder builder = new StringBuilder();
 
+		// iterate over characters in input string
 		for (int i = 0; i < input.length(); i++) {
-
 			char text = input.charAt(i);
 
-			if (Character.isWhitespace(text)) {
-				output += input.charAt(i);
-				if (i + 1 < input.length()) {
-					i++;
-				}
+			// skip current character if it cannot be uppercased
+			if (!Character.isLetter(text)) {
+				builder.append(text);
+				continue;
 			}
 
-			output += convtype.equals("invaltcase") ? input.charAt(i) : input.toUpperCase().charAt(i);
-
-			if (i + 1 < input.length()) {
-				i++;
-				text = input.charAt(i);
-
-				if (Character.isWhitespace(text)) {
-					output += input.charAt(i);
-					if (i + 1 < input.length()) {
-					i++;
-					}
-				}
-			}
-
-			output += convtype.equals("invaltcase") ? input.toUpperCase().charAt(i) : input.charAt(i);
+			// add uppercased or lowercased character depending on uppercase state and flip state
+			builder.append(
+					uppercase ? Character.toUpperCase(text) : Character.toLowerCase(text)
+			);
+			uppercase = !uppercase;
 		}
-		return output;
 
+		return builder.toString();
 	}
 
 	@Override
@@ -81,11 +74,11 @@ public class Conv extends HttpServlet {
 				break;
 
 			case "altcase":
-				output = CheckAltInval(input, convtype);
+				output = alternatingCase(input);
 				break;
 
 			case "invaltcase":
-				output = CheckAltInval(input, convtype);
+				output = alternatingCase(input, false);
 				break;
 
 			case "randomcase":
