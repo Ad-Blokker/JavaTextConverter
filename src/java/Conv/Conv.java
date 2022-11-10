@@ -44,9 +44,9 @@ public class Conv extends HttpServlet {
 
 				if (Character.isWhitespace(text)) {
 					output += input.charAt(i);
-				}
-				if (i + 1 < input.length()) {
+					if (i + 1 < input.length()) {
 					i++;
+					}
 				}
 			}
 
@@ -77,7 +77,7 @@ public class Conv extends HttpServlet {
 				break;
 				
 			case "lowcase":
-				output = input.toLowerCase();
+				output = input;
 				break;
 
 			case "altcase":
