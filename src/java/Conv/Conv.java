@@ -100,6 +100,10 @@ public class Conv extends HttpServlet {
 				output = angrycase.getAngryCase();
 				break;
 
+			case "realangrycase":
+				output = AngryCase.realAngryCase(input);
+				break;
+
 			default:
 				valid = false;
 				break;
