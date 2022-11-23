@@ -60,8 +60,6 @@ public class Conv extends HttpServlet {
 		String convtype = request.getParameter("format");
 		String output = "";
 
-		input = input.toLowerCase();
-
 		boolean valid = true;
 
 		switch (convtype) {
@@ -70,7 +68,7 @@ public class Conv extends HttpServlet {
 				break;
 				
 			case "lowcase":
-				output = input;
+				output = input.toLowerCase();
 				break;
 
 			case "altcase":
@@ -102,6 +100,12 @@ public class Conv extends HttpServlet {
 
 			case "realangrycase":
 				output = AngryCase.realAngryCase(input);
+				break;
+				
+			case "reverse":
+				StringBuilder sb=new StringBuilder(input);  
+				sb.reverse();  
+				output = sb.toString();
 				break;
 
 			default:
