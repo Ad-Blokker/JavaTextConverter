@@ -80,7 +80,7 @@ public class Conv extends HttpServlet {
 				break;
 
 			case "randomcase":
-				input.toLowerCase();
+				input = input.toLowerCase();
 				Random coin = new Random();
 				for (int i = 0; i < input.length(); i++) {
 					output += (coin.nextInt(2) == 0) ? input.toUpperCase().charAt(i) : input.charAt(i);
